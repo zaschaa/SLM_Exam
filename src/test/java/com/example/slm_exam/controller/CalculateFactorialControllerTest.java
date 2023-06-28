@@ -17,13 +17,20 @@ class CalculateFactorialControllerTest {
     private CalculateFactorialService factorialService;
 
     @InjectMocks
-    private CalculateFactorialController calculateFactorialController;
+    private CalculateFactorialController messageController;
 
     @Test
     void shouldCallCalculateFactorialValueFromService() {
 
-        calculateFactorialController.calculateFactorialValue(19);
+        messageController.calculateFactorialValue(19);
 
         Mockito.verify(factorialService, times(1)).calculateFactorialValue(19);
+    }
+    @Test
+    void shouldCallGetTotalFactorialValueFromService() {
+
+        messageController.getTotalFactorialValue();
+
+        Mockito.verify(factorialService, times(1)).getTotalFactorialValue();
     }
 }
