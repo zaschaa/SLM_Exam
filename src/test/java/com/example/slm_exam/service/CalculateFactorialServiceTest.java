@@ -1,6 +1,7 @@
 package com.example.slm_exam.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -22,5 +23,29 @@ public class CalculateFactorialServiceTest {
         int result = factorialService.calculateFactorialValue(input);
 
         assertThat(result).isEqualTo(expectedOutput);
+    }
+
+    @Test
+    void shouldReturnZeroWhenNoFactorialWasCalculated() {
+        int result = factorialService.getTotalFactorialValue();
+
+        assertThat(result).isEqualTo(0);
+    }
+
+    @Test
+    void shouldCorrectValueWhenFactorialWasCalculated() {
+        factorialService.calculateFactorialValue(5);
+        int result = factorialService.getTotalFactorialValue();
+
+        assertThat(result).isEqualTo(120);
+    }
+
+    @Test
+    void shouldCorrectValueWhenMutlipleFactorialsWereCalculated() {
+        factorialService.calculateFactorialValue(5);
+        factorialService.calculateFactorialValue(10);
+        int result = factorialService.getTotalFactorialValue();
+
+        assertThat(result).isEqualTo(120 + 3628800 );
     }
 }
